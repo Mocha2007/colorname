@@ -17,10 +17,7 @@ def rc() -> (int, int, int):
 
 def dist(a: tuple, b: tuple) -> float:
 	assert len(a) == len(b)
-	d = 0
-	for i in range(len(a)):
-		d += (a[i] - b[i])**2
-	return d**.5
+	return sum(map(lambda x: (x[0]-x[1])**2, zip(a, b)))**.5
 
 def predict(c: (int, int, int)) -> str:
 	assert c[0] in range(256)
