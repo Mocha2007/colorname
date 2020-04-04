@@ -109,12 +109,14 @@ namedata = {
 
 chosen = True
 skip = False
+i = 0
 while 1:
 	if chosen or skip:
 		currentcolor = rc()
 		print(currentcolor, '->', predict(currentcolor))
 		screen.fill(currentcolor)
-		drawmap()
+		if i % 10 == 0:
+			drawmap()
 		refresh()
 		skip = False
 	chosen = False
@@ -136,3 +138,4 @@ while 1:
 		open(colorfile, "w+").write(str(colordata))
 	# reduce cpu consumption
 	sleep(1/20)
+	i += 1
