@@ -33,7 +33,6 @@ def predict(c: (int, int, int)) -> str:
 	return closest[1]
 
 def drawmap():
-	resolution = 2
 	for r in range(0, 256, resolution):
 		for g in range(0, 256, resolution):
 			c = namedata[predict((r, g, 0))]
@@ -57,8 +56,26 @@ def drawmap():
 			pygame.draw.rect(screen, c, (r, b+512, resolution, resolution))
 		refresh()
 
+def drawmap2():
+	for coords, colorname in colordata.items():
+		r, g, b = coords
+		c = namedata[colorname]
+		if b == 0:
+			pygame.draw.rect(screen, c, (r, g+256, resolution, resolution))
+		elif b == 255:
+			pygame.draw.rect(screen, c, (768-r, g+256, -resolution, resolution))
+		elif r == 255:
+			pygame.draw.rect(screen, c, (b+256, g+256, resolution, resolution))
+		elif r == 0:
+			pygame.draw.rect(screen, c, (1024-b, g+256, -resolution, resolution))
+		elif g == 0:
+			pygame.draw.rect(screen, c, (r, 256-b, resolution, -resolution))
+		else:
+			pygame.draw.rect(screen, c, (r, b+512, resolution, resolution))
+
 pygame.init()
 
+resolution = 2
 size = 1024, 768
 screen = pygame.display.set_mode(size)
 
