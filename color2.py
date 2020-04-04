@@ -42,26 +42,23 @@ def drawmap():
 			c = namedata[predict((r, g, 0))]
 			# screen.set_at((r, g), c)
 			pygame.draw.rect(screen, c, (r, g+256, resolution, resolution))
+			c = namedata[predict((r, g, 255))]
+			pygame.draw.rect(screen, c, (768-r, g+256, -resolution, resolution))
+		refresh()
 	for g in range(0, 256, resolution):
 		for b in range(0, 256, resolution):
 			c = namedata[predict((255, g, b))]
 			pygame.draw.rect(screen, c, (b+256, g+256, resolution, resolution))
-	for r in range(0, 256, resolution):
-		for g in range(0, 256, resolution):
-			c = namedata[predict((r, g, 255))]
-			pygame.draw.rect(screen, c, (768-r, g+256, -resolution, resolution))
+			c = namedata[predict((0, g, b))]
+			pygame.draw.rect(screen, c, (1024-b, g+256, -resolution, resolution))
+		refresh()
 	for b in range(0, 256, resolution):
 		for r in range(0, 256, resolution):
 			c = namedata[predict((r, 0, b))]
 			pygame.draw.rect(screen, c, (r, 256-b, resolution, -resolution))
-	for b in range(0, 256, resolution):
-		for r in range(0, 256, resolution):
 			c = namedata[predict((r, 255, b))]
 			pygame.draw.rect(screen, c, (r, b+512, resolution, resolution))
-	for g in range(0, 256, resolution):
-		for b in range(0, 256, resolution):
-			c = namedata[predict((0, g, b))]
-			pygame.draw.rect(screen, c, (1024-b, g+256, -resolution, resolution))
+		refresh()
 
 pygame.init()
 
